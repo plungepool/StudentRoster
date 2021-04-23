@@ -3,7 +3,7 @@
 
 enum DegreeProgram
 {
-    SECURITY, NETWORK, SOFTWARE
+    SECURITY, NETWORK, SOFTWARE, INVALID
 };
 
 #endif

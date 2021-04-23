@@ -2,16 +2,15 @@
 
 #include <iostream>
 #include <string>
-using namespace std;
 
 //Constrictor Definition
-Student::Student(unsigned int aStudentId, string aFirstName, string aLastName, string aEmail, unsigned int aAge, unsigned int aDaysToComplete[], DegreeProgram aDegreeProgram){ //constructor
+Student::Student(unsigned int aStudentId, std::string aFirstName, std::string aLastName, std::string aEmail, unsigned int aAge, unsigned int aDaysToComplete[], DegreeProgram aDegreeProgram){ //constructor
     studentId = aStudentId;
     firstName = aFirstName;
     lastName = aLastName;
     email = aEmail;
     age = aAge;
-    for (int i=0; i < COURSESTOTAL; i++) {
+    for (int i=0; i < TOTAL_COURSES; i++) {
         daysToComplete[i] = aDaysToComplete[i];
     }
     degreeProgram = aDegreeProgram;
@@ -21,13 +20,13 @@ Student::Student(unsigned int aStudentId, string aFirstName, string aLastName, s
 void Student::setStudentId(unsigned int aStudentId) {
     studentId = aStudentId;
 }
-void Student::setFirstName(string aFirstName) {
+void Student::setFirstName(std::string aFirstName) {
     firstName = aFirstName;
 }
-void Student::setLastName(string aLastName) {
+void Student::setLastName(std::string aLastName) {
     lastName = aLastName;
 }
-void Student::setEmail(string aEmail) {
+void Student::setEmail(std::string aEmail) {
     //set rules for email format (includes @ something)
     email = aEmail;
 }
@@ -35,7 +34,7 @@ void Student::setAge(unsigned int aAge) {
     age = aAge;
 }
 void Student::setDaysToComplete(unsigned int aDaysToComplete[]){
-    for (int i=0; i < COURSESTOTAL; i++) {
+    for (int i=0; i < TOTAL_COURSES; i++) {
         daysToComplete[i] = aDaysToComplete[i];
     }
 }
@@ -48,20 +47,20 @@ void Student::setDegreeProgram(DegreeProgram aDegreeProgram){
 unsigned int Student::getStudentId() {
     return studentId;
 }
-string Student::getFirstName() {
+std::string Student::getFirstName() {
     return firstName;
 }
-string Student::getLastName() {
+std::string Student::getLastName() {
     return lastName;
 }
-string Student::getEmail() {
+std::string Student::getEmail() {
     return email;
 }
 unsigned int Student::getAge() {
     return age;
 }
 unsigned int Student::getDaysToComplete() {
-    return daysToComplete[COURSESTOTAL];
+    return daysToComplete[TOTAL_COURSES];
 }
 DegreeProgram Student::getDegreeProgram() {
     return degreeProgram;
@@ -69,10 +68,10 @@ DegreeProgram Student::getDegreeProgram() {
 
 //Print Definition
 void Student::print() {
-    cout << "ID: " << studentId << endl
-    << "Name: " << firstName << lastName << endl
-    << "Email: " << email << endl
-    << "Age: " << age << endl
-    << "Days to Complete: " << daysToComplete[COURSESTOTAL] << endl
-    << "Degree Program: " << degreeProgram << endl;
+    std::cout << "ID: " << studentId << std::endl
+    << "Name: " << firstName << lastName << std::endl
+    << "Email: " << email << std::endl
+    << "Age: " << age << std::endl
+    << "Days to Complete: " << daysToComplete[TOTAL_COURSES] << std::endl
+    << "Degree Program: " << degreeProgram << std::endl;
 } 
