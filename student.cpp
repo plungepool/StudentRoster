@@ -4,7 +4,7 @@
 #include <string>
 
 //Constrictor Definition
-Student::Student(std::string aStudentId, std::string aFirstName, std::string aLastName, std::string aEmail, unsigned int aAge, unsigned int aDaysToComplete[], DegreeProgram aDegreeProgram){ //constructor
+Student::Student(std::string aStudentId, std::string aFirstName, std::string aLastName, std::string aEmail, int aAge, int aDaysToComplete[], DegreeProgram aDegreeProgram){ //constructor
     studentId = aStudentId;
     firstName = aFirstName;
     lastName = aLastName;
@@ -30,10 +30,10 @@ void Student::setEmail(std::string aEmail) {
     //set rules for email format (includes @ something)
     email = aEmail;
 }
-void Student::setAge(unsigned int aAge) {
+void Student::setAge(int aAge) {
     age = aAge;
 }
-void Student::setDaysToComplete(unsigned int aDaysToComplete[]){
+void Student::setDaysToComplete(int aDaysToComplete[]){
     for (int i=0; i < TOTAL_COURSES; i++) {
         daysToComplete[i] = aDaysToComplete[i];
     }
@@ -56,11 +56,11 @@ std::string Student::getLastName() {
 std::string Student::getEmail() {
     return email;
 }
-unsigned int Student::getAge() {
+int Student::getAge() {
     return age;
 }
-unsigned int Student::getDaysToComplete() {
-    return daysToComplete[TOTAL_COURSES];
+int *Student::getDaysToComplete() {
+    return daysToComplete;
 }
 DegreeProgram Student::getDegreeProgram() {
     return degreeProgram;
@@ -68,10 +68,25 @@ DegreeProgram Student::getDegreeProgram() {
 
 //Print Definition
 void Student::print() {
-    std::cout << "ID: " << studentId << std::endl
-    << "Name: " << firstName << lastName << std::endl
-    << "Email: " << email << std::endl
-    << "Age: " << age << std::endl
-    << "Days to Complete: " << daysToComplete[TOTAL_COURSES] << std::endl
-    << "Degree Program: " << degreeProgram << std::endl;
+    char tab = 0x09;
+    std::cout << "ID: " << studentId << tab
+    << "Name: " << firstName << ' ' << lastName << tab
+    << "Email: " << email << tab
+    << "Age: " << age << tab
+    << "Days to Complete: {" << daysToComplete[0] << ", " << daysToComplete[1] << ", " << daysToComplete[2] << "}" << tab
+    << "Degree Program: ";
+    switch (degreeProgram) {
+        case SECURITY :
+            std::cout << "Security" << std::endl;
+            break;
+        case NETWORK :
+            std::cout << "Network" << std::endl;
+            break;
+        case SOFTWARE :
+            std::cout << "Software" << std::endl;
+            break;
+        case INVALID :
+            std::cout << "Not found" << std::endl;
+            break;
+    }
 } 

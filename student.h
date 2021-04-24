@@ -14,12 +14,12 @@ class Student {
         std::string firstName;
         std::string lastName;
         std::string email;
-        unsigned int age;
-        unsigned int daysToComplete[TOTAL_COURSES];
+        int age;
+        int daysToComplete[TOTAL_COURSES];
         DegreeProgram degreeProgram;
     public:
         //Constructor Stubs
-        Student(std::string aStudentId, std::string aFirstName, std::string aLastName, std::string aEmail, unsigned int aAge, unsigned int aDaysToComplete[], DegreeProgram aDegreeProgram);
+        Student(std::string aStudentId, std::string aFirstName, std::string aLastName, std::string aEmail, int aAge, int aDaysToComplete[], DegreeProgram aDegreeProgram);
         //~Student();
 
         //Mutators Stubs
@@ -27,8 +27,8 @@ class Student {
         void setFirstName(std::string aFirstName);
         void setLastName(std::string aLastName);
         void setEmail(std::string aEmail);
-        void setAge(unsigned int aAge);
-        void setDaysToComplete(unsigned int aDaysToComplete[]);
+        void setAge(int aAge);
+        void setDaysToComplete(int aDaysToComplete[]);
         void setDegreeProgram(DegreeProgram aDegreeProgram);
 
         //Accessors Stubs
@@ -36,8 +36,8 @@ class Student {
         std::string getFirstName();
         std::string getLastName();
         std::string getEmail();
-        unsigned int getAge();
-        unsigned int getDaysToComplete();
+        int getAge();
+        int *getDaysToComplete();
         DegreeProgram getDegreeProgram();
 
         //Print Stub

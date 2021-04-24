@@ -5,7 +5,7 @@
 
 #include "roster.h"
 
-Roster::Roster(const std::string aStudentData[], unsigned int aNumStudents) {
+Roster::Roster(const std::string aStudentData[], int aNumStudents) {
     studentsInRoster = 0;
     for (int i=0; i < aNumStudents; i++) {
         std::string temp_arr[NUM_ROSTER_FIELDS];
@@ -20,8 +20,8 @@ Roster::Roster(const std::string aStudentData[], unsigned int aNumStudents) {
             }
         }
         
-        unsigned int temp_age = std::stoi(temp_arr[4]);
-        unsigned int temp_daystocomplete[TOTAL_COURSES] = {std::stoi(temp_arr[5]), std::stoi(temp_arr[6]), std::stoi(temp_arr[7])};
+        int temp_age = std::stoi(temp_arr[4]);
+        int temp_daystocomplete[TOTAL_COURSES] = {std::stoi(temp_arr[5]), std::stoi(temp_arr[6]), std::stoi(temp_arr[7])};
 
         DegreeProgram temp_degree; //temp enum to parse degree to enmerated data
         if (temp_arr[8] == "NETWORK") {
@@ -41,44 +41,89 @@ Roster::Roster(const std::string aStudentData[], unsigned int aNumStudents) {
     }
 }
 
-void Roster::add(std::string aStudentId, std::string aFirstName, std::string aLastName, std::string aEmail, unsigned int aAge, unsigned int aDaysInCourse1, unsigned int aDaysInCourse2, unsigned int aDaysInCourse3, DegreeProgram aDegreeProgram) {
+void Roster::add(std::string aStudentId, std::string aFirstName, std::string aLastName, std::string aEmail, int aAge, int aDaysInCourse1, int aDaysInCourse2, int aDaysInCourse3, DegreeProgram aDegreeProgram) {
     studentsInRoster++;
-    unsigned int aDaysToComplete[TOTAL_COURSES] = {aDaysInCourse1, aDaysInCourse2, aDaysInCourse3};
+    int aDaysToComplete[TOTAL_COURSES] = {aDaysInCourse1, aDaysInCourse2, aDaysInCourse3};
     classRosterArray[studentsInRoster] = new Student(aStudentId, aFirstName, aLastName, aEmail, aAge, aDaysToComplete, aDegreeProgram);
 }
 
 void Roster::remove(std::string aStudentId) {
-    //call getStudentId(), iterate through all IDs
-    //if no such ID
-        //return error
-    //if exists
-        //find object by id and remove object
-        studentsInRoster--;
+    bool studentFound = false;
+    for (int i=0; i < studentsInRoster; i++) {
+        if (classRosterArray[i]->getStudentId() == aStudentId) {
+            for (int j=i; j < studentsInRoster; j++) {
+                classRosterArray[j] = classRosterArray[j+1];
+            }
+            studentFound = true;
+            studentsInRoster--;
+            break;
+        }
+    }
+    if (studentFound == false) {
+        std::cout << "Error: No such student ID found" << std::endl;
+    }
 }
-// b.  public void remove(string studentID)  that removes students from the roster by student ID. If the student ID does not exist, 
-// the function prints an error message indicating that the student was not found.
 
 void Roster::printAll() {
-
+    for (int i=0; i < studentsInRoster; i++) {
+        classRosterArray[i]->print();
+    }
 }
-// c. public void printAll() that prints a complete tab-separated list of student data in the provided format: 
-// A1 [tab] First Name: John [tab] Last Name: Smith [tab] Age: 20 [tab]daysInCourse: {35, 40, 55} Degree Program: Security. 
-// The printAll() function should loop through all the students in classRosterArray and call the print() function for each student.
 
 void Roster::printAverageDaysInCourse(std::string aStudentId) {
-
+    bool studentFound = false;
+    for (int i=0; i < studentsInRoster; i++) {
+        if (classRosterArray[i]->getStudentId() == aStudentId) {
+            int *totalDTC = classRosterArray[i]->getDaysToComplete();
+            int averageDaysToComplete = (totalDTC[0]+totalDTC[1]+totalDTC[2]) / TOTAL_COURSES;
+            std::cout << averageDaysToComplete << std::endl;
+            studentFound = true;
+            break;
+        }
+    }
+    if (studentFound == false) {
+        std::cout << "Error: No such student ID found" << std::endl;
+    }
 }
-// d.  public void printAverageDaysInCourse(string studentID)  that correctly prints a student’s average number of days 
-// in the three courses. The student is identified by the studentID parameter.
 
 void Roster::printInvalidEmails() {
-
+    for (int i=0; i < studentsInRoster; i++) {
+        std::string currentEmail = classRosterArray[i]->getEmail();
+        bool spaceFlag = false;
+        bool atFlag = false;
+        bool periodFlag = false;
+        for (int j=0; j < currentEmail.length(); j++) {
+            if (currentEmail[j] == ' ') {
+                spaceFlag = true;
+                break;
+            }
+            else if (currentEmail[j] == '@') {
+                atFlag = true;
+                continue;
+            }
+            else if (currentEmail[j] == '.') {
+                periodFlag = true;
+                continue;
+            }
+        }
+        if (spaceFlag == true || atFlag == false || periodFlag == false) {
+            std::cout << currentEmail << std::endl;
+        }
+    }
 }
-// e.  public void printInvalidEmails() that verifies student email addresses and displays all invalid email addresses to the user.
-// Note: A valid email should include an at sign ('@') and period ('.') and should not include a space (' ').
 
-void printByDegreeProgram(DegreeProgram aDegreeProgram) {
-
+void Roster::printByDegreeProgram(DegreeProgram aDegreeProgram) {
+    for (int i=0; i < studentsInRoster; i++) {
+        if (classRosterArray[i]->getDegreeProgram() == aDegreeProgram) {
+            classRosterArray[i]->print();
+        }
+    }
 }
-// f.  public void printByDegreeProgram(DegreeProgram degreeProgram) that prints out student information for 
-//     a degree program specified by an enumerated type.
+
+void Roster::printAllAverageDaysInCourse() {
+    for (int i=0; i < studentsInRoster; i++) {
+        std::string currentId = classRosterArray[i]->getStudentId();
+        std::cout << currentId << ": ";
+        printAverageDaysInCourse(currentId);
+    }
+}
