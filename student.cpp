@@ -4,7 +4,7 @@
 #include <string>
 
 //Constrictor Definition
-Student::Student(unsigned int aStudentId, std::string aFirstName, std::string aLastName, std::string aEmail, unsigned int aAge, unsigned int aDaysToComplete[], DegreeProgram aDegreeProgram){ //constructor
+Student::Student(std::string aStudentId, std::string aFirstName, std::string aLastName, std::string aEmail, unsigned int aAge, unsigned int aDaysToComplete[], DegreeProgram aDegreeProgram){ //constructor
     studentId = aStudentId;
     firstName = aFirstName;
     lastName = aLastName;
@@ -17,7 +17,7 @@ Student::Student(unsigned int aStudentId, std::string aFirstName, std::string aL
 }
 
 //Mutator Definitions
-void Student::setStudentId(unsigned int aStudentId) {
+void Student::setStudentId(std::string aStudentId) {
     studentId = aStudentId;
 }
 void Student::setFirstName(std::string aFirstName) {
@@ -44,7 +44,7 @@ void Student::setDegreeProgram(DegreeProgram aDegreeProgram){
 }
 
 //Accessor Definitions
-unsigned int Student::getStudentId() {
+std::string Student::getStudentId() {
     return studentId;
 }
 std::string Student::getFirstName() {

@@ -10,7 +10,7 @@
 
 class Student {
     private:
-        unsigned int studentId;
+        std::string studentId;
         std::string firstName;
         std::string lastName;
         std::string email;
@@ -19,11 +19,11 @@ class Student {
         DegreeProgram degreeProgram;
     public:
         //Constructor Stubs
-        Student(unsigned int aStudentId, std::string aFirstName, std::string aLastName, std::string aEmail, unsigned int aAge, unsigned int aDaysToComplete[], DegreeProgram aDegreeProgram);
+        Student(std::string aStudentId, std::string aFirstName, std::string aLastName, std::string aEmail, unsigned int aAge, unsigned int aDaysToComplete[], DegreeProgram aDegreeProgram);
         //~Student();
 
         //Mutators Stubs
-        void setStudentId(unsigned int aStudentId);
+        void setStudentId(std::string aStudentId);
         void setFirstName(std::string aFirstName);
         void setLastName(std::string aLastName);
         void setEmail(std::string aEmail);
@@ -32,7 +32,7 @@ class Student {
         void setDegreeProgram(DegreeProgram aDegreeProgram);
 
         //Accessors Stubs
-        unsigned int getStudentId();
+        std::string getStudentId();
         std::string getFirstName();
         std::string getLastName();
         std::string getEmail();
