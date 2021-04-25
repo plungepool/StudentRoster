@@ -41,6 +41,10 @@ Roster::Roster(const std::string aStudentData[], int aNumStudents) {
     }
 }
 
+Roster::~Roster(){
+    // delete classRosterArray;
+}
+
 void Roster::add(std::string aStudentId, std::string aFirstName, std::string aLastName, std::string aEmail, int aAge, int aDaysInCourse1, int aDaysInCourse2, int aDaysInCourse3, DegreeProgram aDegreeProgram) {
     studentsInRoster++;
     int aDaysToComplete[TOTAL_COURSES] = {aDaysInCourse1, aDaysInCourse2, aDaysInCourse3};

@@ -14,9 +14,9 @@ class Roster {
         Student* classRosterArray[MAX_NUM_STUDENTS];
         int studentsInRoster;
     public:
-        //Constructor Stubs
+        //Constructor/Destructor Stubs
         Roster(const std::string aStudentData[], int aNumStudents);
-        //~Roster();
+        ~Roster();
 
         //Function Stubs
         void add(std::string aStudentId, std::string aFirstName, std::string aLastName, std::string aEmail, int aAge, int aDaysInCourse1, int aDaysInCourse2, int aDaysInCourse3, DegreeProgram aDegreeProgram);                                                           

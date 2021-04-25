@@ -16,6 +16,11 @@ Student::Student(std::string aStudentId, std::string aFirstName, std::string aLa
     degreeProgram = aDegreeProgram;
 }
 
+//Destructor Definition
+Student::~Student(){
+    // delete[] daysToComplete;
+}
+
 //Mutator Definitions
 void Student::setStudentId(std::string aStudentId) {
     studentId = aStudentId;
@@ -27,7 +32,6 @@ void Student::setLastName(std::string aLastName) {
     lastName = aLastName;
 }
 void Student::setEmail(std::string aEmail) {
-    //set rules for email format (includes @ something)
     email = aEmail;
 }
 void Student::setAge(int aAge) {
@@ -39,7 +43,6 @@ void Student::setDaysToComplete(int aDaysToComplete[]){
     }
 }
 void Student::setDegreeProgram(DegreeProgram aDegreeProgram){
-    //rules for valid program
     degreeProgram = aDegreeProgram;
 }
 

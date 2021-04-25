@@ -49,5 +49,7 @@ classRoster->printAll();
 std::cout << std::endl << "Removing student A3 again..." << std::endl;
 classRoster->remove("A3");
 
+delete classRoster;
+
 std::cout << std::endl; system("pause"); exit (0);
 }

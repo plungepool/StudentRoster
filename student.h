@@ -18,9 +18,9 @@ class Student {
         int daysToComplete[TOTAL_COURSES];
         DegreeProgram degreeProgram;
     public:
-        //Constructor Stubs
+        //Constructor/Destructor Stubs
         Student(std::string aStudentId, std::string aFirstName, std::string aLastName, std::string aEmail, int aAge, int aDaysToComplete[], DegreeProgram aDegreeProgram);
-        //~Student();
+        ~Student();
 
         //Mutators Stubs
         void setStudentId(std::string aStudentId);
