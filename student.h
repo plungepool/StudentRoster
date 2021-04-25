@@ -19,7 +19,7 @@ class Student {
         DegreeProgram degreeProgram;
     public:
         //Constructor/Destructor Stubs
-        Student(std::string aStudentId, std::string aFirstName, std::string aLastName, std::string aEmail, int aAge, int aDaysToComplete[], DegreeProgram aDegreeProgram);
+        Student(std::string aStudentId, std::string aFirstName, std::string aLastName, std::string aEmail, int aAge, int* aDaysToComplete, DegreeProgram aDegreeProgram);
         ~Student();
 
         //Mutators Stubs

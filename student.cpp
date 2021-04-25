@@ -4,7 +4,7 @@
 #include <string>
 
 //Constrictor Definition
-Student::Student(std::string aStudentId, std::string aFirstName, std::string aLastName, std::string aEmail, int aAge, int aDaysToComplete[], DegreeProgram aDegreeProgram){ //constructor
+Student::Student(std::string aStudentId, std::string aFirstName, std::string aLastName, std::string aEmail, int aAge, int* aDaysToComplete, DegreeProgram aDegreeProgram){ //constructor
     studentId = aStudentId;
     firstName = aFirstName;
     lastName = aLastName;
@@ -71,14 +71,15 @@ DegreeProgram Student::getDegreeProgram() {
 
 //Print Definition
 void Student::print() {
+    int print_DaysToComplete[TOTAL_COURSES];
     char tab = 0x09;
-    std::cout << "ID: " << studentId << tab
-    << "Name: " << firstName << ' ' << lastName << tab
-    << "Email: " << email << tab
-    << "Age: " << age << tab
-    << "Days to Complete: {" << daysToComplete[0] << ", " << daysToComplete[1] << ", " << daysToComplete[2] << "}" << tab
+    std::cout << "ID: " << getStudentId() << tab
+    << "Name: " << getFirstName() << ' ' << getLastName() << tab
+    << "Email: " << getEmail() << tab
+    << "Age: " << getAge() << tab
+    << "Days to Complete: {" << getDaysToComplete()[0] << ", " << getDaysToComplete()[1] << ", " << getDaysToComplete()[2] << "}" << tab
     << "Degree Program: ";
-    switch (degreeProgram) {
+    switch (getDegreeProgram()) {
         case SECURITY :
             std::cout << "Security" << std::endl;
             break;

@@ -1,5 +1,16 @@
+// 2.  Create a student object for each student in the data table and populate classRosterArray.
+// a.  Parse each set of data identified in the “studentData Table.”
+// b.  Add each student object to classRosterArray.
+// don't use contructor and move all that to the add function? and a parse function?
+// The add(…) method is not used.
+// Some students do not use the add method to add Student objects to the Roster because they simply 
+// point the array of pointers at the new object using a particular index.  In this sense the add 
+// method is rather superfluous, but it is necessary, and the workaround is simple.
 
-// 5.  Implement the destructor to release the memory that was allocated dynamically in Roster.
+// The printout does not do output using accessors.
+// Students don’t use the accessors because they simply call the print() method, which does not use 
+// accessors because the print() method is already a member of the Student class.  The clear solution 
+// is to use getters in the print() method, or to call the accessors directly from main for that printout.
 
 #include <iostream>
 #include <string>
@@ -26,8 +37,11 @@ int numStudents = sizeof(studentData) / sizeof(studentData[0]);
 //Print course title, language, my WGU id, and my name
 std::cout << "C867 Scripting and Programming Applications, C++, 003377175, Robert Duffy" << std::endl << std::endl;
 
+//Initialize roster
+Roster* classRoster = new Roster;
+
 //Parse and populate
-Roster* classRoster = new Roster(studentData, numStudents);
+classRoster->parse(studentData, numStudents, classRoster);
 
 std::cout << "Class Roster:" << std::endl;
 classRoster->printAll();

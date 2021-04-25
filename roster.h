@@ -15,11 +15,12 @@ class Roster {
         int studentsInRoster;
     public:
         //Constructor/Destructor Stubs
-        Roster(const std::string aStudentData[], int aNumStudents);
+        Roster();
         ~Roster();
 
         //Function Stubs
-        void add(std::string aStudentId, std::string aFirstName, std::string aLastName, std::string aEmail, int aAge, int aDaysInCourse1, int aDaysInCourse2, int aDaysInCourse3, DegreeProgram aDegreeProgram);                                                           
+        void parse(const std::string aStudentData[], int aNumStudents, Roster* aRoster);
+        void add(std::string aStudentId, std::string aFirstName, std::string aLastName, std::string aEmail, int aAge, int* aDaysToComplete, DegreeProgram aDegreeProgram);                                                           
         void remove(std::string aStudentId);
         void printAll();
         void printAverageDaysInCourse(std::string aStudentId);

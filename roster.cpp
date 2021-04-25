@@ -5,8 +5,47 @@
 
 #include "roster.h"
 
-Roster::Roster(const std::string aStudentData[], int aNumStudents) {
+Roster::Roster() {
     studentsInRoster = 0;
+    // for (int i=0; i < aNumStudents; i++) {
+    //     std::string temp_arr[NUM_ROSTER_FIELDS];
+    //     int k = 0;
+    //     for (int j=0; j < aStudentData[i].length(); j++) { //for each character in string
+    //         if (aStudentData[i][j] == ',') { //if comma, skip it
+    //             k++; //and start new temp_arr string
+    //             continue;
+    //         }
+    //         else {
+    //             temp_arr[k] += aStudentData[i][j]; //if other, append to current str
+    //         }
+    //     }
+        
+    //     int temp_age = std::stoi(temp_arr[4]);
+    //     int temp_daystocomplete[TOTAL_COURSES] = {std::stoi(temp_arr[5]), std::stoi(temp_arr[6]), std::stoi(temp_arr[7])};
+
+    //     DegreeProgram temp_degree; //temp enum to parse degree to enmerated data
+    //     if (temp_arr[8] == "NETWORK") {
+    //         temp_degree = NETWORK;
+    //     }
+    //     else if (temp_arr[8] == "SECURITY") {
+    //         temp_degree = SECURITY;
+    //     }
+    //     else if (temp_arr[8] == "SOFTWARE") {
+    //         temp_degree = SOFTWARE;
+    //     }
+    //     else { 
+    //         temp_degree = INVALID;
+    //     }
+        // classRosterArray[i] = new Student(temp_arr[0], temp_arr[1], temp_arr[2], temp_arr[3], temp_age, temp_daystocomplete, temp_degree);
+        // studentsInRoster++;
+    // }
+}
+
+Roster::~Roster(){
+    // delete classRosterArray;
+}
+
+void Roster::parse(const std::string aStudentData[], int aNumStudents, Roster* aRoster) {
     for (int i=0; i < aNumStudents; i++) {
         std::string temp_arr[NUM_ROSTER_FIELDS];
         int k = 0;
@@ -36,19 +75,13 @@ Roster::Roster(const std::string aStudentData[], int aNumStudents) {
         else { 
             temp_degree = INVALID;
         }
-        classRosterArray[i] = new Student(temp_arr[0], temp_arr[1], temp_arr[2], temp_arr[3], temp_age, temp_daystocomplete, temp_degree);
-        studentsInRoster++;
+    aRoster->add(temp_arr[0], temp_arr[1], temp_arr[2], temp_arr[3], temp_age, temp_daystocomplete, temp_degree);
     }
 }
 
-Roster::~Roster(){
-    // delete classRosterArray;
-}
-
-void Roster::add(std::string aStudentId, std::string aFirstName, std::string aLastName, std::string aEmail, int aAge, int aDaysInCourse1, int aDaysInCourse2, int aDaysInCourse3, DegreeProgram aDegreeProgram) {
-    studentsInRoster++;
-    int aDaysToComplete[TOTAL_COURSES] = {aDaysInCourse1, aDaysInCourse2, aDaysInCourse3};
+void Roster::add(std::string aStudentId, std::string aFirstName, std::string aLastName, std::string aEmail, int aAge, int* aDaysToComplete, DegreeProgram aDegreeProgram) {
     classRosterArray[studentsInRoster] = new Student(aStudentId, aFirstName, aLastName, aEmail, aAge, aDaysToComplete, aDegreeProgram);
+    studentsInRoster++;
 }
 
 void Roster::remove(std::string aStudentId) {
