@@ -1,7 +1,6 @@
 #ifndef roster_h
 #define roster_h
 
-//#include <iostream>
 #include <string>
 
 #include "student.h"

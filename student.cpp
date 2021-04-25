@@ -18,7 +18,7 @@ Student::Student(std::string aStudentId, std::string aFirstName, std::string aLa
 
 //Destructor Definition
 Student::~Student(){
-    // delete[] daysToComplete;
+    //No destructors needed
 }
 
 //Mutator Definitions

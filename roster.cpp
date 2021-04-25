@@ -1,5 +1,3 @@
-//const string studentData[] = {"A1,John,Smith,John1989@gm ail.com,20,30,35,40,SECURITY", "A2,Suzan,Erickson,Erickson_1990@gmailcom,19,50,30,40,NETWORK", "A3,Jack,Napoli,The_lawyer99yahoo.com,19,20,40,33,SOFTWARE", "A4,Erin,Black,Erin.black@comcast.net,22,50,58,40,SECURITY", "A5,Rob,Duffy,rduffy7@wgu.edu,30,1,5,2,SOFTWARE"}
-
 #include <iostream>
 #include <string>
 
@@ -7,62 +5,33 @@
 
 Roster::Roster() {
     studentsInRoster = 0;
-    // for (int i=0; i < aNumStudents; i++) {
-    //     std::string temp_arr[NUM_ROSTER_FIELDS];
-    //     int k = 0;
-    //     for (int j=0; j < aStudentData[i].length(); j++) { //for each character in string
-    //         if (aStudentData[i][j] == ',') { //if comma, skip it
-    //             k++; //and start new temp_arr string
-    //             continue;
-    //         }
-    //         else {
-    //             temp_arr[k] += aStudentData[i][j]; //if other, append to current str
-    //         }
-    //     }
-        
-    //     int temp_age = std::stoi(temp_arr[4]);
-    //     int temp_daystocomplete[TOTAL_COURSES] = {std::stoi(temp_arr[5]), std::stoi(temp_arr[6]), std::stoi(temp_arr[7])};
-
-    //     DegreeProgram temp_degree; //temp enum to parse degree to enmerated data
-    //     if (temp_arr[8] == "NETWORK") {
-    //         temp_degree = NETWORK;
-    //     }
-    //     else if (temp_arr[8] == "SECURITY") {
-    //         temp_degree = SECURITY;
-    //     }
-    //     else if (temp_arr[8] == "SOFTWARE") {
-    //         temp_degree = SOFTWARE;
-    //     }
-    //     else { 
-    //         temp_degree = INVALID;
-    //     }
-        // classRosterArray[i] = new Student(temp_arr[0], temp_arr[1], temp_arr[2], temp_arr[3], temp_age, temp_daystocomplete, temp_degree);
-        // studentsInRoster++;
-    // }
 }
 
 Roster::~Roster(){
-    // delete classRosterArray;
+    for (int i=0; i < studentsInRoster; i++) {
+        delete classRosterArray[i];
+        classRosterArray[i] = nullptr;
+    }
 }
 
 void Roster::parse(const std::string aStudentData[], int aNumStudents, Roster* aRoster) {
     for (int i=0; i < aNumStudents; i++) {
         std::string temp_arr[NUM_ROSTER_FIELDS];
         int k = 0;
-        for (int j=0; j < aStudentData[i].length(); j++) { //for each character in string
-            if (aStudentData[i][j] == ',') { //if comma, skip it
-                k++; //and start new temp_arr string
+        for (int j=0; j < aStudentData[i].length(); j++) {
+            if (aStudentData[i][j] == ',') {
+                k++;
                 continue;
             }
             else {
-                temp_arr[k] += aStudentData[i][j]; //if other, append to current str
+                temp_arr[k] += aStudentData[i][j];
             }
         }
         
         int temp_age = std::stoi(temp_arr[4]);
         int temp_daystocomplete[TOTAL_COURSES] = {std::stoi(temp_arr[5]), std::stoi(temp_arr[6]), std::stoi(temp_arr[7])};
 
-        DegreeProgram temp_degree; //temp enum to parse degree to enmerated data
+        DegreeProgram temp_degree;
         if (temp_arr[8] == "NETWORK") {
             temp_degree = NETWORK;
         }

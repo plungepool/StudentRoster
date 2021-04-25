@@ -1,7 +1,6 @@
 #ifndef student_h
 #define student_h
 
-//#include <iostream>
 #include <string>
 
 #include "degree.h"
